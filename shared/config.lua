@@ -1,6 +1,8 @@
 Config = {}
 
 
+Config.Inventory = 'ox' -- ox | qs | qb
+
 Config.Prices = {
     water = { 
         price = 1, -- Reward Amount
