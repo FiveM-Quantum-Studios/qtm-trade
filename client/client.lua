@@ -4,9 +4,9 @@ AddEventHandler('tiz:openMenuBarygos', function()
 
     for item, data in pairs(Config.Prices) do
         local quantity = data.quantity or 0
-        local rewardAmount = data.price or 0
+        local rewardAmount = data.price or 0 
         local reward = data.reward or "unknown"
-        local rewardLabel = data.rewardLabel or "Unknown Reward"
+        local rewardLabel = data.rewardLabel or "Unknown Reward" 
         local label = data.label or "Unknown item"
         local icon = data.icon or "default-icon"
 
@@ -16,21 +16,43 @@ AddEventHandler('tiz:openMenuBarygos', function()
                 description = string.format('%s %d\n%s %d %s', Config.Language.requiredAmount, quantity, Config.Language.youReceive, rewardAmount, rewardLabel),
                 icon = icon,
                 onSelect = function()
-                    local input = lib.inputDialog(Config.Language.inputTitle, {
-                        { type = 'number', label = Config.Language.quantity, description = Config.Language.howMuchToSell, required = true, icon = 'hashtag' },
-                    })
-                    if not input then return end
-                    local sell = lib.callback.await('tiz:barygaSell', false, item, input[1])
-                    if sell then
-                        lib.notify({
-                            title = Config.Language.notifyTitle,
-                            description = Config.Language.purchaseSuccess,
-                            type = 'success'
+                    local itemCount = lib.callback.await('tiz:getItemCount', false, item)
+
+                    if itemCount and itemCount >= quantity then
+                        local maxSellable = math.floor(itemCount / quantity)
+
+                        local slider = lib.inputDialog(Config.Language.inputTitle, {
+                            {
+                                type = 'slider', 
+                                label = Config.Language.quantity, 
+                                description = Config.Language.howMuchToSell, 
+                                min = 1, 
+                                max = maxSellable, 
+                                step = 1, 
+                                default = 1,
+                                required = true,
+                                icon = 'hashtag'
+                            }
                         })
+                        if not slider then return end
+                        local sell = lib.callback.await('tiz:barygaSell', false, item, slider[1])
+                        if sell then
+                            lib.notify({
+                                title = Config.Language.notifyTitle,
+                                description = Config.Language.purchaseSuccess,
+                                type = 'success'
+                            })
+                        else
+                            lib.notify({
+                                title = Config.Language.notifyTitle,
+                                description = Config.Language.notEnough,
+                                type = 'error'
+                            })
+                        end
                     else
                         lib.notify({
                             title = Config.Language.notifyTitle,
-                            description = string.format('%s %s', Config.Language.notEnough, rewardLabel),
+                            description = Config.Language.notEnough,
                             type = 'error'
                         })
                     end

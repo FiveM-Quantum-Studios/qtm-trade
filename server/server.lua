@@ -1,3 +1,7 @@
+lib.callback.register('tiz:getItemCount', function(source, item)
+    return GetItemCount(source, item)
+end)
+
 lib.callback.register('tiz:barygaSell', function(source, item, count)
     local itemConfig = Config.Prices[item]
 
