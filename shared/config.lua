@@ -1,13 +1,13 @@
 Config = {}
 
 
-Config.Inventory = 'ox' -- ox | qs | qb
+Config.Inventory = 'ox' -- ox = ox_inventory | qs = qs-inventory | qb = qb-inventory
 
 Config.Prices = {
     water = { 
         price = 1, -- Reward Amount
         label = 'Water', 
-        icon = 'book-skull', 
+        icon = 'book-skull', -- https://fontawesome.com/icons
         reward = 'black_money', 
         rewardLabel = 'Black Money',
         quantity = 5 -- How much of 'water' does the player need to trade.
