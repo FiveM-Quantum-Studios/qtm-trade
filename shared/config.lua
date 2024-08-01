@@ -1,8 +1,7 @@
 Config = {}
-
-
+----------------------------------------------------------------------------------
 Config.Inventory = 'ox' -- ox = ox_inventory | qs = qs-inventory | qb = qb-inventory
-
+----------------------------------------------------------------------------------
 Config.Prices = {
     water = { 
         price = 1, -- Reward Amount
@@ -14,9 +13,7 @@ Config.Prices = {
     },
     -- Add other items here as needed
 }
-
 ----------------------------------------------------------------------------------
-
 Config.Language = {
     requiredAmount = 'Required Amount:',
     youReceive = 'You receive:',
