@@ -20,3 +20,8 @@ shared_scripts {
     '@ox_lib/init.lua',
     'shared/**.lua',
 }
+
+dependencies {
+	'ox_lib',
+	'qtm-lib'
+}
