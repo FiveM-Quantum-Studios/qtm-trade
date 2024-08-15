@@ -37,24 +37,12 @@ AddEventHandler('tiz:openMenuBarygos', function()
                         if not slider then return end
                         local sell = lib.callback.await('tiz:barygaSell', false, item, slider[1])
                         if sell then
-                            lib.notify({
-                                title = Config.Language.notifyTitle,
-                                description = Config.Language.purchaseSuccess,
-                                type = 'success'
-                            })
+                            qtm.Notification(nil, Config.Language.notifyTitle, 'success', Config.Language.purchaseSuccess)
                         else
-                            lib.notify({
-                                title = Config.Language.notifyTitle,
-                                description = Config.Language.notEnough,
-                                type = 'error'
-                            })
+                            qtm.Notification(nil, Config.Language.notifyTitle, 'error', Config.Language.notEnough)
                         end
                     else
-                        lib.notify({
-                            title = Config.Language.notifyTitle,
-                            description = Config.Language.notEnough,
-                            type = 'error'
-                        })
+                        qtm.Notification(nil, Config.Language.notifyTitle, 'error', Config.Language.notEnough)
                     end
                 end,
             })
