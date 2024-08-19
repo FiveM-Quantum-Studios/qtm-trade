@@ -26,3 +26,9 @@ dependencies {
 	'ox_lib',
 	'qtm-lib'
 }
+
+escrow_ignore {
+    'server/**.lua',
+    'client/**.lua',
+    'shared/**.lua'
+}
