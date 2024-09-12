@@ -1,3 +1,33 @@
+local qtarget = exports.qtarget
+local BarygaLocation = lib.points.new(Config.Ped, 50)
+
+local function spawnIDNPC()
+    lib.RequestModel(Config.PedModel )
+    createIDNPC = CreatePed(0, Config.PedModel, vec3(Config.Ped - 0.9), Config.Heading , false, true)
+    FreezeEntityPosition(createIDNPC, true)
+    SetBlockingOfNonTemporaryEvents(createIDNPC, true)
+    SetEntityInvincible(createIDNPC, true)
+	SetModelAsNoLongerNeeded(Config.PedModel)
+end
+
+function BarygaLocation:onEnter()
+    spawnIDNPC()
+    exports.ox_target:addLocalEntity(createIDNPC, {
+        {
+            name = 'Trader',
+            icon = 'fa-solid fa-tablets',
+            label = Config.Language.targetLabel,
+            event = 'tiz:openMenuBarygos',
+            distance = 10
+        }
+    })
+end
+
+function BarygaLocation:onExit()
+    DeleteEntity(createIDNPC)
+    exports.ox_target:removeEntity(createIDNPC, nil)
+end
+
 RegisterNetEvent('tiz:openMenuBarygos')
 AddEventHandler('tiz:openMenuBarygos', function()
     local options = {}

@@ -1,4 +1,8 @@
 Config = {}
+
+Config.Ped = vec3(2489.8376, 4959.6323, 44.7936)
+Config.Heading = 49.0624
+Config.PedModel = `a_m_o_salton_01`
 ----------------------------------------------------------------------------------
 Config.Prices = {
     water = { 
@@ -21,5 +25,6 @@ Config.Language = {
     notifyTitle = 'Trader',
     purchaseSuccess = 'Your trade has been succesfull',
     notEnough = 'You do not have enough',
-    contextTitle = 'Trader'
+    contextTitle = 'Trader',
+    targetLabel = 'Trader'
 }
