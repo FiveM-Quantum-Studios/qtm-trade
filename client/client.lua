@@ -1,4 +1,3 @@
-local qtarget = exports.qtarget
 local BarygaLocation = lib.points.new(Config.Ped, 50)
 
 local function spawnIDNPC()
