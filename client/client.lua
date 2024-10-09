@@ -1,8 +1,8 @@
 local BarygaLocation = lib.points.new(Config.Ped, 50)
 
 local function spawnIDNPC()
-    lib.RequestModel(Config.PedModel )
-    createIDNPC = CreatePed(0, Config.PedModel, vec3(Config.Ped - 0.9), Config.Heading , false, true)
+    lib.RequestModel(Config.PedModel)
+    createIDNPC = CreatePed(0, Config.PedModel, vec3(Config.Ped - 0.9), Config.Heading, false, true)
     FreezeEntityPosition(createIDNPC, true)
     SetBlockingOfNonTemporaryEvents(createIDNPC, true)
     SetEntityInvincible(createIDNPC, true)
@@ -34,13 +34,13 @@ AddEventHandler('tiz:openMenuBarygos', function()
     for item, data in pairs(Config.Prices) do
         local quantity = data.quantity or 0
         local rewardAmount = data.price or 0 
-        local reward = data.reward or "unknown"
+        local reward = data.reward or "Unknown"
         local rewardLabel = data.rewardLabel or "Unknown Reward" 
         local label = data.label or "Unknown item"
         local icon = data.icon or "default-icon"
 
         if quantity > 0 and rewardAmount > 0 and reward and label and icon and rewardLabel then
-            table.insert(options, {
+            options[#options + 1] = {
                 title = label,
                 description = string.format('%s %d\n%s %d %s', Config.Language.requiredAmount, quantity, Config.Language.youReceive, rewardAmount, rewardLabel),
                 icon = icon,
