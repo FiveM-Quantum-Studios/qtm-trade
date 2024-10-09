@@ -74,7 +74,7 @@ AddEventHandler('tiz:openMenuBarygos', function()
                         qtm.Notification(nil, Config.Language.notifyTitle, 'error', Config.Language.notEnough)
                     end
                 end,
-            })
+            }
         else
             print(string.format("Config error for item '%s': Missing or invalid data", item))
         end
