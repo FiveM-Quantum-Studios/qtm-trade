@@ -13,3 +13,5 @@ lib.callback.register('tiz:barygaSell', function(source, item, count)
         return false
     end
 end)
+
+qtm.Server.VersionChecker('qtm-trade')
